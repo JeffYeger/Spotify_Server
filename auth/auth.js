@@ -7,7 +7,7 @@ function createToken (data){
 
 function verify (req,res,next){
     try{
-      console.log(req.headers);
+      
         const data = jwt.verify(req.headers.authorization.replace("Bearer ",""), process.env.SECRET)
         if(!data) throw 'Missing Data'
        

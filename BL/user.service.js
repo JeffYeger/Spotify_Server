@@ -27,8 +27,9 @@ let user = await userController.readOneLogin({email:data.email},"+password")
     if (!bcrypt.compareSync(data.password /*from user*/,user.password /*from db*/)) throw "password incorrect"
     user = await userController.updateAndReturn({email:user.email},{lastConnectedDate: new Date()})
     const token = await auth.createToken({user:user._id})
-    // console.log (token)
-    return {user,token}
+   
+    return {user,token} 
+   
 }
 
 

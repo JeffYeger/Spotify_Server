@@ -27,5 +27,17 @@ router.get('/getPlaylist', verify, async (req,res)=> {
         res.send (error).status(401)
     }
 })
+router.get('/showplaylistsongs/:name', verify, async (req,res)=> {
+    try {
+     
+        const results = await playlistServices.getPlaylistSongs(req.id,req.params.name)
+
+        res.send (results)
+     
+        
+    } catch (error) {
+        res.send (error).status(401)
+    }
+})
 
 module.exports = router

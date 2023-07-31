@@ -10,11 +10,12 @@ async function addToPlaylist(userId, name, data) {
     let playlist = await playlistController.readOne({ name: name, user: userId })
     if (!playlist) {
         playlist = await playlistController.create({ user: userId, name: name, songs: [songExists._id] })
-        console.log ("added to existing playlist")
+        console.log ("added to new playlist")
     }
     if (playlist){
-        playlist= await playlistController.updateAndReturn({name: name, user: userId},{songs:[songExists._id]})
-        console.log('added to new playlist');
+        playlist.songs.push (songExists._id)
+        playlist= await playlistController.updateAndReturn({name: name, user: userId},{songs:playlist.songs})
+        console.log('added to existing playlist');
        
     }
     if (!data) throw "missing data"
@@ -29,4 +30,11 @@ async function getPlaylist(userId) {
     return playlist
 }
 
-module.exports = { addToPlaylist, getPlaylist }
+async function getPlaylistSongs(userId,name){
+    if (!userId) throw "missing user Id"
+    if (!name) throw "missing name"
+    let playlistSongs = await playlistController.read ({user: userId,name:name })
+    if (!playlistSongs) throw "playlist songs not found"
+    return playlistSongs
+}
+module.exports = { addToPlaylist, getPlaylist,getPlaylistSongs }
