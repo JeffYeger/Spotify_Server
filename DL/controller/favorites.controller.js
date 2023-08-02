@@ -2,7 +2,7 @@ const favoritesModel = require('../model/favorites.model')
 
 
 async function create(data){
-  console.log(data);
+
     return await favoritesModel.create(data).populate("user songs")
 }
 async function read(filter = {}){

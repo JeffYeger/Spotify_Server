@@ -5,7 +5,6 @@ async function addToFavorites(userId,data){
    let songExists = await songController.readOne({id:data.id})
    if (!songExists) {
 songExists =  await songController.create(data)
-
    }
     const favorites = await favoritesController.create({user:  userId, songs: [songExists._id]})
     if (!data) throw "missing data"

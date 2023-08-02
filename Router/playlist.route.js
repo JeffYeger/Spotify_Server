@@ -8,6 +8,7 @@ const { verify } = require('../auth/auth')
 
 router.post('/addToPlaylist', verify, async (req,res)=> {
     try {
+        console.log ('add to playlist')
        
         const results = await playlistServices.addToPlaylist(req.id,req.body.name,req.body)
         res.send (results)
@@ -22,6 +23,7 @@ router.get('/getPlaylist', verify, async (req,res)=> {
        
         const results = await playlistServices.getPlaylist(req.id)
         res.send (results)
+     
         
     } catch (error) {
         res.send (error).status(401)

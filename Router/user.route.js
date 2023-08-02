@@ -15,7 +15,7 @@ router.post("/register", async (req, res) => {
 });
 router.get("/:email", async (req, res) => {
   try {
-    // console.log(req.body);
+   
     const result = await userServices.getUser(req.params.email);
     res.send(result);
   } catch (err) {

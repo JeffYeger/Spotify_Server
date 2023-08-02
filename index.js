@@ -16,6 +16,11 @@ app.use ('/song',require('./Router/song.route'))
 app.use ('/favorites', require ('./Router/favorites.route'))
 app.use ('/playlist', require ('./Router/playlist.route'))
 
+
+const print = () => {
+    console.log ('print')
+}
+print ()
 app.listen(PORT,()=>{
     console.log("Server is up 🖥️");
 })

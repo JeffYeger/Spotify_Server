@@ -2,9 +2,11 @@ const playlistController = require('../DL/controller/playlist.controller')
 const songController = require('../DL/controller/song.controller')
 
 async function addToPlaylist(userId, name, data) {
+    if (!name) throw "Name required"
     let songExists = await songController.readOne({ id: data.id })
     if (!songExists) {
         songExists = await songController.create(data)
+       
 
     }
     let playlist = await playlistController.readOne({ name: name, user: userId })
@@ -13,6 +15,9 @@ async function addToPlaylist(userId, name, data) {
         console.log ("added to new playlist")
     }
     if (playlist){
+        playlist.songs.forEach((song)=> {
+            if (song.id == songExists.id) throw "songs is already in playlist"
+        })
         playlist.songs.push (songExists._id)
         playlist= await playlistController.updateAndReturn({name: name, user: userId},{songs:playlist.songs})
         console.log('added to existing playlist');

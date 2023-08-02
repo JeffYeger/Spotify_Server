@@ -9,8 +9,10 @@ const { verify } = require('../auth/auth')
 
 router.post ('/savesong',  async (req,res)=>{
     try {
+        console.log ('got to saved song')
         const results = await songServices.savesong(req.body)
         res.send(results)
+       
     }
     catch(err){
         res.status(401).send(err)
