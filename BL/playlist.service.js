@@ -38,7 +38,7 @@ async function getPlaylist(userId) {
 async function getPlaylistSongs(userId,name){
     if (!userId) throw "missing user Id"
     if (!name) throw "missing name"
-    let playlistSongs = await playlistController.read ({user: userId,name:name })
+    let playlistSongs = await playlistController.read ({user: userId})
     if (!playlistSongs) throw "playlist songs not found"
     return playlistSongs
 }
