@@ -30,7 +30,7 @@ async function addToPlaylist(userId, name, data) {
 async function getPlaylist(userId) {
 
     if (!userId) throw "missing user Id"
-    let playlist = await playlistController.read({ user: userId })
+    let playlist = await playlistController.read({ user: userId, isActive:true })
     if (!playlist) throw "no playlist found"
     return playlist
 }
