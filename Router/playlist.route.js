@@ -31,7 +31,7 @@ router.get('/getPlaylist', verify, async (req,res)=> {
 })
 router.get('/showplaylistsongs/:name', verify, async (req,res)=> {
     try {
-     
+        console.log (req)
         const results = await playlistServices.getPlaylistSongs(req.id,req.params.name)
 
         res.send (results)
@@ -39,6 +39,15 @@ router.get('/showplaylistsongs/:name', verify, async (req,res)=> {
         
     } catch (error) {
         res.send (error).status(401)
+    }
+})
+
+router.put ('/deletePlaylist/:name', verify, async (req,res)=> {
+    try {
+        const deleted = await playlistServices.deletePlaylist(req.id,req.params.name)
+        res.send (deleted)
+    } catch (error) {
+        res.send (error) .status (401)
     }
 })
 
