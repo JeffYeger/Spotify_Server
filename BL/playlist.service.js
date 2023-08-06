@@ -42,4 +42,13 @@ async function getPlaylistSongs(userId,name){
     if (!playlistSongs) throw "playlist songs not found"
     return playlistSongs
 }
-module.exports = { addToPlaylist, getPlaylist,getPlaylistSongs }
+
+async function deletePlaylist (userId, name) {
+    if (!userId) throw "missing user Id"
+    if (!name) throw "missing name"
+
+    let deletePlaylist = await playlistController.del({user: userId,name:name })
+    if (!deletePlaylist) throw "couldn't find playlist to delete"
+    return deletePlaylist
+}
+module.exports = { addToPlaylist, getPlaylist,getPlaylistSongs, deletePlaylist }

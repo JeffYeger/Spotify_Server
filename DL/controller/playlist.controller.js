@@ -25,8 +25,8 @@ async function updateAndReturn(filter, newData){
   let data = await playlistModel.findOneAndUpdate(filter,newData,{new:true}).populate("user songs")
   return  data
 }
-async function del(){
-    return await playlistModel.updateOne().populate("user songs")
+async function del(filter = {}){
+    return await playlistModel.updateOne({filter, isActive: false}).populate("user songs")
 
 }
 

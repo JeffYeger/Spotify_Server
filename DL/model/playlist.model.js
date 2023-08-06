@@ -9,6 +9,10 @@ const playlistSchema = new mongoose.Schema({
         unique: true
         
     },
+    isActive: {
+        type: Boolean,
+        default: true
+      },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
@@ -20,7 +24,8 @@ const playlistSchema = new mongoose.Schema({
             ref: 'song',
             required: true
           } 
-      ]
+      ],
+     
       
 })
 
