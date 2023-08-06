@@ -24,8 +24,8 @@ async function updateAndReturn(filter, newData){
   let data = await favoritesModel.findOneAndUpdate(filter,newData,{new:true}).populate("user songs")
   return  data
 }
-async function del(){
-    return await favoritesModel.updateOne().populate("user songs")
+async function del(filter = {}){
+    return await favoritesModel.updateOne(filter, {isActive:false}).populate("user songs")
 
 }
 

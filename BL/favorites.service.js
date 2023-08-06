@@ -19,4 +19,8 @@ async function getFavorites(userId){
     return favorites
 }
 
-module.exports = {addToFavorites, getFavorites}
+async function removeFavorite (userId,songID) {
+
+}
+
+module.exports = {addToFavorites, getFavorites, removeFavorite}

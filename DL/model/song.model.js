@@ -20,6 +20,10 @@ const songSchema = new mongoose.Schema({
     url: {
         type: String,
         required: true
+    },
+    isActive: {
+        type: Boolean,
+        default: true
     }
     
 })

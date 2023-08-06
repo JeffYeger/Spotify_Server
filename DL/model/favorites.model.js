@@ -5,16 +5,22 @@ require ('./user.model')
 const favoritesSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user', // Assuming your user model is named 'User'
+        ref: 'user',
         required: true
       },
       songs : [{
        
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'song', // Assuming your song model is named 'Song'
-            required: true
+            ref: 'song',
+            required: true,
           } 
-      ]
+          
+        ],
+        
+        isActive: {
+          type: Boolean,
+          default: true
+        }
       
 })
 

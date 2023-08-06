@@ -23,8 +23,8 @@ async function updateAndReturn(filter, newData){
   let data = await songModel.findOneAndUpdate(filter,newData,{new:true})
   return  data
 }
-async function del(){
-    return await songModel.updateOne()
+async function del(filter = {}){
+    return await songModel.updateOne(filter, {isActive: false})
 
 }
 

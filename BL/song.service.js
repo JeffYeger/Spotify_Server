@@ -1,4 +1,4 @@
-// const songController = require ('../DL/controller/song.controller')
+const songController = require ('../DL/controller/song.controller')
 
 // // async function savesong(data){
 // //     const song = await songController.create(data)
@@ -7,5 +7,12 @@
 
 // // }
 
+async function removeSong (songId) {
+    if (!songId) throw "missing song Id"
+    let song = await songController.del ({id:songId})
+    if (!song) throw "couldn't find song"
+    return song
+}
 
-// module.exports = {savesong}
+
+module.exports = {removeSong}
