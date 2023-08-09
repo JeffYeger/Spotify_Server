@@ -20,4 +20,15 @@ router.get('/getfavorites', verify, async (req,res)=> {
     }
 })
 
+
+router.put ('/removefavorite', verify, async (req,res) => {
+    try {
+        const results = await favoritesServices.removeFavorite (req.id,req.body.songId)
+        res.send (results)
+        
+    } catch (error) {
+        res.send (error).status (401)
+    }
+})
+
 module.exports = router
